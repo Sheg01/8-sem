@@ -32,15 +32,12 @@ public class RegistrationController {
                           @RequestParam String mail,
                           Map<String, Object> model) {
 
-        if (mail.isEmpty()) {
-            throw new BadRequestException("почта не должна быть пустой");
-        }
-
         String validationMessage = registrationValidationService.isUserValid(user, clientName, number, mail);
-        if(validationMessage!=null){
-            model.put("message", validationMessage);
-            return "registration";
-        }
+
+//        if(validationMessage!=null){
+//            model.put("message", validationMessage);
+//            return "registration";
+//        }
 
         registrationService.saveUser(user);
 

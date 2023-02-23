@@ -13,6 +13,6 @@ public class RestController {
 
     @PostMapping("/save")
     public User save(@RequestBody User user) {
-        throw new BadRequestException("lol");
+        throw new BadRequestException("under_development");
     }
 }

@@ -20,15 +20,15 @@ public class RegistrationValidationService {
 
         User userFromDb = registrationService.findUserByUsername(user);
 
-        if(!validationService.validateEmptyLines(user.getUsername())){
-            throw new BadRequestException("Заполните поле имени");
+        if(validationService.validateEmptyLines(user.getUsername())){
+            throw new ConflictException("");
         } else if(!validationService.validateEmptyLines(user.getPassword())){
             return "Пароль должен содержать по крайней мере 8 символов";
         } else if(!validationService.validateEmptyLines(name)){
-//            return "Заполните поле имени";
-            throw new BadRequestException("Заполните поле имени");
+            return "Заполните поле имени";
         } else if(!validationService.isValidPhoneNumber(number)){
-            return "Неверный формат номера телефона";
+            throw new ConflictException("");
+//            return "Неверный формат номера телефона";
         } else if(!validationService.isValidMail(mail)){
             return "Неверный формат почты";
         } else if(userFromDb != null) {
